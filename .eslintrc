@@ -15,4 +15,8 @@
     "no-duplicate-imports": 2,
     "no-redeclare": 2,
   },
+
+  "globals": {
+    "WeakMap": false
+  }
 }
