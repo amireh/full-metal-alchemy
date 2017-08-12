@@ -1,12 +1,12 @@
-const { ParametricBufferedStrategy, Period } = require('../')
+const { ParametricTimeBuffer, Period } = require('../')
 
 module.exports = t => [
   {
-    name: 'using ParametricBufferedStrategy',
+    name: 'using ParametricTimeBuffer',
     metrics: [
       {
         name: 'Products: Keyboard Navigation',
-        strategy: ParametricBufferedStrategy({ period: Period.hours(6) }),
+        buffer: ParametricTimeBuffer({ period: Period.hours(6) }),
         dataPoints: [ 'a' ],
         events: [
           'products/product-selected-using-keyboard',

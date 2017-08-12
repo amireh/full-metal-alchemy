@@ -1,4 +1,4 @@
-const { OrderedEventSequence } = require('../')
+const { SequentialConstraint } = require('../')
 
 module.exports = t => [
   {
@@ -6,7 +6,7 @@ module.exports = t => [
     metrics: [
       {
         name: 'Products: Got Sidetracked',
-        events: OrderedEventSequence([
+        events: SequentialConstraint([
           'products/clicked-product-link',
           'page-views/product-detail',
           'page-views/products',

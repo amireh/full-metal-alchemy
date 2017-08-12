@@ -7,7 +7,7 @@ const specs = flatten([
   require('./data-point-custom-reduction'),
   require('./data-point-extraction'),
   require('./data-point-fixed-value'),
-  require('./ordered-sequencing'),
+  require('./sequential-constraint'),
   require('./parametric-buffering'),
 ].map(x => x(DSL.t)))
 
