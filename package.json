@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "license": "MIT",
   "scripts": {
-    "test": "mocha 'lib/**/*.test.js' --reporter dot"
+    "test": "mocha 'lib/**/*.test.js' 'integration_tests/index.js' --reporter dot"
   },
   "repository": {
     "type": "git",
