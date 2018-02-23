@@ -1,4 +1,4 @@
-const { SequentialConstraint } = require('../')
+const { C } = require('../')
 
 module.exports = t => [
   {
@@ -6,11 +6,13 @@ module.exports = t => [
     metrics: [
       {
         name: 'Products: Got Sidetracked',
-        events: SequentialConstraint([
-          'products/clicked-product-link',
-          'page-views/product-detail',
-          'page-views/products',
-        ]),
+        constraints: [
+          C.OrderConstraint([
+            'products/clicked-product-link',
+            'page-views/product-detail',
+            'page-views/products',
+          ])
+        ],
       },
     ],
 

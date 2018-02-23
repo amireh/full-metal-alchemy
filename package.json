@@ -1,11 +1,14 @@
 {
   "name": "scitylana",
   "description": "A high-level, provider-agnostic analytics library.",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "lib/index.js",
   "license": "MIT",
   "scripts": {
-    "test": "mocha 'lib/**/*.test.js' 'integration_tests/index.js' --reporter dot"
+    "coverage": "nyc report",
+    "coverage:html": "nyc report --reporter html",
+    "test": "mocha 'lib/**/*.test.js' 'integration_tests/index.js' --reporter dot",
+    "test:coverage": "nyc npm test"
   },
   "repository": {
     "type": "git",
@@ -17,6 +20,7 @@
   "devDependencies": {
     "chai": "4.1.0",
     "mocha": "3.4.2",
+    "nyc": "11.4.1",
     "sinon": "^2.4.1"
   }
 }

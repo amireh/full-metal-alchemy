@@ -2,3 +2,5 @@
 /samples
 /scitylana.sublime-project
 /scitylana.sublime-workspace
+/.nyc_output
+/coverage

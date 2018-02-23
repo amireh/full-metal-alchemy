@@ -1,4 +1,4 @@
-const { SequentialConstraint, TimeBuffer, Period } = require('../')
+const { C, Period } = require('../')
 
 module.exports = t => [
   {
@@ -6,12 +6,14 @@ module.exports = t => [
     metrics: [
       {
         name: 'Products: Got Sidetracked',
-        buffer: TimeBuffer({ period: Period.days(1) }),
-        events: SequentialConstraint([
-          'products/clicked-product-link',
-          'page-views/product-detail',
-          'page-views/products',
-        ]),
+        constraints: [
+          C.RateConstraint({ period: Period.days(1) }),
+          C.OrderConstraint([
+            'products/clicked-product-link',
+            'page-views/product-detail',
+            'page-views/products',
+          ])
+        ],
       },
     ],
 

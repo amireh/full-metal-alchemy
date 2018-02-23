@@ -1,4 +1,4 @@
-const { ParametricTimeBuffer, Period } = require('../')
+const { C, Period } = require('../')
 
 module.exports = t => [
   {
@@ -6,10 +6,12 @@ module.exports = t => [
     metrics: [
       {
         name: 'Products: Keyboard Navigation',
-        buffer: ParametricTimeBuffer({ period: Period.hours(6) }),
         dataPoints: [ 'a' ],
-        events: [
-          'products/product-selected-using-keyboard',
+        constraints: [
+          C.ParametricRateConstraint({ period: Period.hours(6) }),
+          C.TypeConstraint([
+            'products/product-selected-using-keyboard',
+          ]),
         ],
       },
     ],
