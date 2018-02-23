@@ -22,5 +22,11 @@
     "mocha": "3.4.2",
     "nyc": "11.4.1",
     "sinon": "^2.4.1"
+  },
+  "nyc": {
+    "exclude": [
+      "**/__tests__",
+      "integration_tests"
+    ]
   }
 }
