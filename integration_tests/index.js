@@ -4,6 +4,7 @@ const flatten = x => x.reduce((list, y) => list.concat(y), [])
 const specs = flatten([
   require('./buffering'),
   require('./data-point-boolean-coercion'),
+  require('./data-point-context'),
   require('./data-point-custom-reduction'),
   require('./data-point-extraction'),
   require('./data-point-fixed-value'),

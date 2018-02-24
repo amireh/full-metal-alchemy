@@ -5,7 +5,7 @@ const { inspect: nodeInspect } = require('util')
 
 const inspect = x => nodeInspect(x, { colors: true, depth: 5 })
 const t = {
-  reduce: params => [ 'reduce', params ],
+  reduce: (params, ctx) => [ 'reduce', params, ctx ],
   advance: () => ([ 'advance' ]),
   assert: params => [ 'assert', params ],
   travelInTime: period => ([ 'travelInTime', period ]),
@@ -13,13 +13,13 @@ const t = {
 
 const applyAssert = (state, { eventCount = null, events = [] }, stepIndex) => {
   const fmt = message => `[STEP ${stepIndex+1}] ${message}`;
-  const { events: metricEvents } = state.journal;
+  const { points } = state.journal;
 
   if (typeof eventCount === 'number') {
-    assert(metricEvents.length === eventCount,
-      fmt(`Expected ${eventCount} metric events and not ${metricEvents.length}.
+    assert(points.length === eventCount,
+      fmt(`Expected ${eventCount} metric events and not ${points.length}.
         DUMP=
-        ${inspect(metricEvents)}
+        ${inspect(points)}
         ${inspect(state.journal.metrics)}
       `
       )
@@ -27,10 +27,10 @@ const applyAssert = (state, { eventCount = null, events = [] }, stepIndex) => {
   }
 
   events.forEach(({ index, name, data }) => {
-    const event = metricEvents[index];
+    const event = points[index];
 
     assert(!!event,
-      fmt(`Event at ${index} is out of bounds. (${metricEvents.length})`)
+      fmt(`Event at ${index} is out of bounds. (${points.length})`)
     )
 
     if (name) {
@@ -57,18 +57,15 @@ const applyAssert = (state, { eventCount = null, events = [] }, stepIndex) => {
   return state
 }
 
-const applyStep = (state, [ name, params ], stepIndex) => {
+const applyStep = (state, [ name, params, ctx ], stepIndex) => {
   switch (name) {
     case 'reduce':
       return Object.assign({}, state, {
-        journal: Adapter.reduce(state.journal, [].concat(params))
+        journal: Adapter.reduce(state.journal, [].concat(params), ctx)
       })
 
     case 'advance':
       return state;
-      // return Object.assign({}, state, {
-      //   adapter: Adapter.advance(state.adapter, state.metricEvents)
-      // })
 
     case 'assert':
       return applyAssert(state, params, stepIndex);
@@ -87,7 +84,7 @@ exports.createTest = function({ sinon, spec }) {
   const journal = Adapter.create(spec.metrics)
 
   return function() {
-    spec.steps.reduce(applyStep, { sinon, journal, metricEvents: null })
+    spec.steps.reduce(applyStep, { sinon, journal })
   }
 }
 
