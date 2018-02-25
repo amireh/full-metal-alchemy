@@ -37,16 +37,6 @@ const sidebarLayout = {
       name: 'JS::Browser',
       using: 'api--constraints'
     },
-    // {
-    //   name: 'Core::SidebarHeader',
-    //   options: {
-    //     text: 'Examples'
-    //   }
-    // },
-    // {
-    //   name: 'Markdown::Browser',
-    //   using: 'examples'
-    // },
   ]
 }
 
@@ -64,9 +54,6 @@ module.exports = {
   outputDir: path.resolve(__dirname, 'docs'),
   assetRoot: path.resolve(__dirname),
   serializer: [ 'megadoc-html-serializer', {
-    assets: [
-      // 'doc/career-router.svg',
-    ],
     theme: [ 'megadoc-theme-minimalist', {} ],
     title: 'Full Metal Alchemy',
     resizableSidebar: false,
@@ -74,7 +61,7 @@ module.exports = {
     sidebarWidth: 340,
     favicon: null,
     footer: false,
-    // footer: 'Crafted with &#9829; using <a href="https://github.com/megadoc">megadoc</a>.',
+    footer: '',
     tooltipPreviews: false,
     styleSheet: path.resolve(__dirname, 'megadoc.conf.less'),
     styleOverrides: {
@@ -142,7 +129,7 @@ module.exports = {
       id: 'articles',
       include: [
         'README.md',
-        // 'CHANGELOG.md',
+        'CHANGELOG.md',
       ],
       processor: [ 'megadoc-plugin-markdown', {
         baseURL: '/',
