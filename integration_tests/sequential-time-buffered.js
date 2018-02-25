@@ -1,4 +1,4 @@
-const { C, Period } = require('../')
+const { OrderConstraint, RateConstraint, Period } = require('../')
 
 module.exports = t => [
   {
@@ -7,8 +7,8 @@ module.exports = t => [
       {
         name: 'Products: Got Sidetracked',
         constraints: [
-          C.RateConstraint({ period: Period.days(1) }),
-          C.OrderConstraint([
+          RateConstraint({ period: Period.days(1) }),
+          OrderConstraint([
             'products/clicked-product-link',
             'page-views/product-detail',
             'page-views/products',

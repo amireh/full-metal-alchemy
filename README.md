@@ -1,163 +1,193 @@
-# Scitylana
+# Full Metal Alchemy
 
-A high-level, provider-agnostic analytics library.
+Full Metal Alchemy is a high-level analytics library for refining raw
+application events into meaningful metrics. Its purpose is to help shape,
+aggregate, or buffer events to provide you with better insight from the events
+that are eventually submitted to your analytics provider.
 
-## 2. Concepts
+The library is agnostic to your analytics provider (e.g. Google Analytics or
+Mixpanel) since it operates at a layer between your application code and the
+one that submits events to that backend.
 
-In this section we will go through the concepts utilized by Scitylana to allow
-for finer control of what metrics you end up tracking.
+## How it works
 
-The application of those concepts is covered in the Usage and API sections.
+The heart of Full Metal Alchemy is in the [[refine]] routine which takes as
+input a bunch of events triggered by your application, such as UI events, and
+runs them through a set of refinement rules called [[metrics | Metric]]. A
+metric can produce a [[metric point | MetricPoint]] which is the refined
+version of the source event(s) and it is what you end up submitting to your
+backend.
 
-### 2.1 Application Events
+The next section goes over those concepts and later sections show how to
+utilize them, or you can choose to jump to the [[usage | ./README.md#usage]]
+section right away if you're feeling adventurous.
 
-Application events refer to events that occur in the host application that
-signify a certain interaction you want to track and analyze. Those events are
-fed into Scitylana for aggregation into what is called a metric event which
-we'll learn about in the next section.
+## Concepts
 
-The definition of an application event and the conditions that lead to its
-triggering are arbitrary to Scitylana; they could be anything. For example,
-clicking on a certain DOM element, pressing a keybinding, performing a sequence
-of interactions with UI widgets, performing a page visit, or performing an API
-call with certain parameters can all be considered application events.
+### Application events
 
-### 2.2 Metrics and Metric Events
+An application event represents a micro-interaction with some function of your
+application. In itself such an event may not be useful to track, perhaps
+because it's too fine-grained and would end up cluttering your reports, or that
+it doesn't capture the whole picture of the interaction (e.g. it needs to be
+correlated with other events to do so.)
 
-A metric represents an interaction with your application that you want to track
-and analyze. Metric events are events triggered by Scitylana when certain
-pre-defined conditions (one of which is the triggering of application events)
-are met, and it is those events that you end up submitting to your analytics
-provider service.
+Examples of such events can include:
 
-The difference between metric events and application events is that the former
-may be aggregated from several of the latter in different ways (or not at all.)
+- pressing a keybinding to trigger some UI function like a Search widget
+- performing a sequence of interactions with a UI widget like a Filter control
+- a page visit
+- a call to an API with certain parameters
 
-For example, a metric "Failed to Login" could be defined in such a way that its
-event will be triggered only when the application event "login-failed" has been
-triggered 3 times in a row within a single page visit.
+If you're adding FMA to an existing analytics architecture, these events would
+be what you're already submitting to the backend. However, with FMA they are
+considered "raw" events that we want to further refine into useful metrics.
 
-### 2.3 Data Points
+Let's look at metrics now.
+
+### Metrics and points
+
+A metric represents an interaction with your application **that you want to
+track and analyze**. It is defined as a set of rules to apply over one or more
+raw application events to produce _points_.
+
+Points are produced when certain application events are triggered and can
+contain data from application events (or the [[context | ./README.md
+#application-context]] as we'll see later) but more interestingly, their
+production can be _conditioned_ using _constraints_.
+
+Constraints are the "brains" of metrics and they're probably the reason you'd want to use the library, so let's learn about them.
+
+### Constraints
+
+A constraint is a group of functions that are defined on a metric to answer the
+following questions:
+
+1. Is an application event, with its data, relevant to the metric?
+2. Can a point be produced?
+
+To answer those questions, a constraint maintains a state object and has the
+ability to adjust it every time an event is triggered. Thus, its answer can
+change from an event to another.
+
+Constraints can provide a wide variety of control. For example, we can
+condition a metric to produce a point at most once an hour, which would be
+ideal for granular events that are expected to be triggered rapidly during a
+session. In this case, we're only interested in the _visibility_ of a function
+and not in how many times it's used.
+
+You can browse the available constraints in the navigation to the left. You can
+also create your own constraints as explained in its [[api documentation |
+Constraint]].
+
+### Application context
+
+For practicality purposes, FMA accepts an arbitrary dependency to expose to
+[[constraints | Constraint]] and to [[data point evaluators |
+~Metric.dataPoints]]. This dependency is referred to as the context
+and it can contain **whatever data you may need to produce points**.
+
+The context is particularly useful when modeling UI interactions; for example
+if you're on a page for a specific product and you want all the points produced
+while on that page to have the relevant `productId`, you aren't required to
+attach such a data point to _every_ event you trigger. Instead, you would
+define it once on the context object (e.g. at the time of page visit) and then
+reference that context for the product id when you produce the point.
+
+Further, the context can be modified during [[refinement | refine]] by
+constraints you implement and is yielded back to you to re-inject in your
+application
+
+### Data points
 
 A data point refers to a single piece of data you want to attach to a metric
-event. Those points can be extracted from application events, calculated from
-multiple event parameters, or have a pre-defined static value.
+point when it's produced. Those points can be extracted from application events
+or the context, or just have a pre-defined static value.
 
-### 2.4 Event Sequences
+## Usage
 
-An event sequence describes a _constraint_ on the triggering of a metric event
-from application events. Mostly, this is only useful when you're aggregating a
-metric event from several application events.
+For a start we need to define the metrics we want to track. The definition of a
+metric is described in detail [[here | Metric]] but for now we'll use a minimal
+definition:
 
-An event sequence is said to _pass_ when its conditions are met upon the
-triggering of an application event.
+```javascript
+const metrics = [
+  {
+    name: 'User logged in',
+    events: [
+      'logged-in'
+    ]
+  }
+]
+```
 
-The nature of those constraints depends on which sequence you choose for the
-metric, which are described below.
+Before we get to [[refine]] we need to create an initial state for the metrics
+and their constraints using the the [[createState]] API.
 
-#### 2.4.1 The Any Event Sequence _(default)_
+```javascript
+import { createState } from 'full-metal-alchemy'
 
-This sequence will pass when any of the specified application events are
-triggered. In other words, this is the "null" constraint.
+const metrics = ... // from before
 
-#### 2.4.2 The Ordered Event Sequence
+let metricState = createState(metrics)
+```
 
-This sequence will pass only when the specified application events have all
-been triggered in the order they were defined in. Once such a "streak" has been
-made, the sequence is reset.
+Now we're ready to start producing points. We'll feed [[refine]] with the
+metric state we've prepared along with some application events:
 
-### 2.5 Aggregation Strategies
+```javascript
+import { refine } from 'full-metal-alchemy'
 
-Certain application events may be too "granular" to track each time they occur
-and it may not be useful to track them in such a way at all. For example,
-events that are expected to be triggered rapidly during a session or a page
-visit. In such cases, you may only be interested in analyzing the _visibility_
-of a function, that is, whether your users are using the function those
-application events originate from and possibly how they're using it.
+const metricEvents = ... // from before
+let metricState = ...    // from before
 
-To that end, aggregation, or buffering, strategies allow you to refine the
-triggering of application events and to "roll them" into a single metric event
-according to certain time constraints, like "once a day", "once an hour", or
-"once an hour for each specific page".
+// assume we got those from the application somehow:
+const events = [
+  { name: 'logged-out' },
+  { name: 'logged-in' }
+]
 
-In this section we will go over the available aggregation strategies.
+// run them through and produce points eligible for submission:
+const nextMetricState = refine(metricState, events)
+```
 
-#### 2.5.1 Granular Aggregation Strategy _(default)_
+To see if any points were produced, you can inspect the [[.points |
+~MetricState.points]] property of the [[metric state | MetricState]]:
 
-This is the "no-op" aggregation strategy which will allow the metric event to
-be triggered for each application event so long as the remaining conditions (if
-any) are met.
+```javascript
+const pointsToSubmit = nextMetricState.points
 
-#### 2.5.2 Buffered Aggregation Strategy
+// perhaps you'd submit them immediately:
+pointsToSubmit.forEach(point => {
+  analyticsAdapter.submit({
+    name: point.name
+    data: point.data
+  })
+})
+```
 
-This strategy will allow the metric event to be triggered at most once during
-the period you specify. Periods, as their name depict, represent periods of
-time and are covered later in this document.
+Finally, be sure to grab a reference to the advanced state before the next call
+to refine:
 
-For example, assume we're tracking the use of filter UI-controls like filtering
-by Name or Date, and we're interested only in analyzing whether our users are
-using those filters at all. Such a condition could be said in English as:
+```javascript
+metricState = nextMetricState
+```
 
-> Trigger this metric event **only once a day**.
+That should be the primary flow. Keep in mind that the APIs are immutable; they
+won't have side-effects on any of the input parameters. For this reason it is
+necessary to keep a reference to the "next" state and feed it as input to the
+next call.
 
-The emphasized part is what this strategy allows you to control.
+## Where to go from here
 
-#### 2.5.3 Parametric Buffered Aggregation Strategy
+Look into the [[metric definition | Metric]] in more detail then perhaps go
+over the available constraints which you can find in the sidebar.
 
-This strategy is similar to the [buffered aggregation strategy](#-2.5.2
--buffered-aggregation-strategy) only that its buffering is further refined by
-the data points of the metric event.
-
-Following with our example in the previous section, what if you wanted to also
-analyze which filters are the users using, and perhaps which is most the common
-filter?
-
-Such a condition could be said in English as:
-
-> Trigger this metric event only once a day **based on which filter control is
-> used**.
-
-So, if the user decides to filter by name, that would be aggregated in a buffer
-separate from the one for had she decided to filter by both name and date,
-since the parameters of the events differ.
-
-### 2.6 Periods
-
-A period is a time data structure that represents a period of time such as "a
-day", "3 hours", or "forever". Periods are passed to certain APIs to define
-time constraints (like "at most once every `period`".)
-
-## 3. Usage
-
-_TBD_
-
-## 4. API
-
-_TBD_
-
-### 4.1 `Adapter`
-
-### 4.2 Metrics and Application Events
-
-#### 4.2.1 `MetricSpecification`
-#### 4.2.2 `DataPoint`
-
-### 4.3 Event Sequences
-
-#### 4.3.1 `EventSequence`
-#### 4.3.2 `EventSequence.Any`
-#### 4.3.3 `EventSequence.Ordered`
-
-### 4.4 Aggregation Strategies
-
-#### 4.4.1 `GranularStrategy`
-#### 4.4.2 `BufferedStrategy`
-#### 4.4.3 `ParametricBufferedStrategy`
-
-### 4.5 `Period` primitives
+If you're looking to write your own constraints, consult the [[Constraint]]
+documentation.
 
 ## License
 
-Copyright 2017 Ahmad Amireh <ahmad@amireh.net>.
+Copyright 2018 Ahmad Amireh <ahmad@amireh.net>.
 
 This library is licensed under the MIT license.

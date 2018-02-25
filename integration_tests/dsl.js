@@ -1,4 +1,4 @@
-const { Adapter, Period } = require('../')
+const { createState, refine, Period } = require('../')
 const { assert } = require('chai')
 const invariant = require('invariant')
 const { inspect: nodeInspect } = require('util')
@@ -61,7 +61,7 @@ const applyStep = (state, [ name, params, ctx ], stepIndex) => {
   switch (name) {
     case 'reduce':
       return Object.assign({}, state, {
-        journal: Adapter.reduce(state.journal, [].concat(params), ctx)
+        journal: refine(state.journal, [].concat(params), ctx)
       })
 
     case 'advance':
@@ -81,7 +81,7 @@ const applyStep = (state, [ name, params, ctx ], stepIndex) => {
 }
 
 exports.createTest = function({ sinon, spec }) {
-  const journal = Adapter.create(spec.metrics)
+  const journal = createState(spec.metrics)
 
   return function() {
     spec.steps.reduce(applyStep, { sinon, journal })

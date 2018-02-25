@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Like [[./RateConstraint.js]], throttle a point from being produced more than once during a certain period but for any specific data set." />
+
+    <title>ParametricRateConstraint</title>
+
+    
+    <link rel="stylesheet" href="../assets/megadoc__styles.css" />
+    
+
+    
+  </head>
+
+  <body class="body--themed">
+    <div id="__app__"><div data-reactroot="" data-reactid="1" data-react-checksum="1423789071"><div data-reactid="2"></div><!-- react-empty: 3 --><div class="root root--with-multi-page-layout root--with-two-column-layout root--with-fixed-sidebar root--without-banner" data-reactid="4"><div class="root__screen" data-reactid="5"><div class="two-column-layout two-column-layout--fixed" data-reactid="6"><div class="two-column-layout__left" style="width:340px;" data-reactid="7"><div class="resizable-panel" data-reactid="8"><div class="resizable-panel__content" data-reactid="9"><div data-reactid="10"><div data-reactid="11"><nav class="megadoc-document-browser markdown-browser" data-reactid="12"><div data-reactid="13"><div data-reactid="14"><a href="../index.html#full-metal-alchemy" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="15"><!-- react-text: 16 -->Full Metal Alchemy
+<!-- /react-text --></a></div></div></nav></div><div data-reactid="17"><h3 class="layout__sidebar-header" data-reactid="18">API</h3></div><div data-reactid="19"><nav class="megadoc-document-browser class-browser__listing" data-reactid="20"><div class="class-browser__category" data-reactid="21"><div class="class-browser__entry" data-reactid="22"><a href="createState.html#createState" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="23"><!-- react-text: 24 -->createState<!-- /react-text --></a></div><div class="class-browser__entry" data-reactid="25"><a href="refine.html#refine" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="26"><!-- react-text: 27 -->refine<!-- /react-text --></a></div></div></nav></div><div data-reactid="28"><h3 class="layout__sidebar-header" data-reactid="29">API: Auxiliary</h3></div><div data-reactid="30"><nav class="megadoc-document-browser class-browser__listing" data-reactid="31"><div class="class-browser__category" data-reactid="32"><div class="class-browser__entry" data-reactid="33"><a href="DataPoint.html#DataPoint" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="34"><!-- react-text: 35 -->DataPoint<!-- /react-text --></a></div><div class="class-browser__entry" data-reactid="36"><a href="Period.html#Period" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="37"><!-- react-text: 38 -->Period<!-- /react-text --></a></div><div class="class-browser__entry" data-reactid="39"><a href="Tuple.html#Tuple" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="40"><!-- react-text: 41 -->Tuple<!-- /react-text --></a></div></div></nav></div><div data-reactid="42"><h3 class="layout__sidebar-header" data-reactid="43">API: Constraints</h3></div><div data-reactid="44"><nav class="megadoc-document-browser class-browser__listing" data-reactid="45"><div class="class-browser__category" data-reactid="46"><div class="class-browser__entry" data-reactid="47"><a href="Constraint.html#Constraint" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="48"><!-- react-text: 49 -->Constraint<!-- /react-text --></a></div><div class="class-browser__entry" data-reactid="50"><a href="FrequencyConstraint.html#FrequencyConstraint" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="51"><!-- react-text: 52 -->FrequencyConstraint<!-- /react-text --></a></div><div class="class-browser__entry" data-reactid="53"><a href="OrderConstraint.html#OrderConstraint" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="54"><!-- react-text: 55 -->OrderConstraint<!-- /react-text --></a></div><div class="class-browser__entry class-browser__entry--active" data-reactid="56"><a href="#ParametricRateConstraint" class="class-browser__entry-link active mega-link mega-link--active mega-link--functional" data-reactid="57"><!-- react-text: 58 -->ParametricRateConstraint<!-- /react-text --></a></div><div class="class-browser__entry" data-reactid="59"><a href="ProximityConstraint.html#ProximityConstraint" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="60"><!-- react-text: 61 -->ProximityConstraint<!-- /react-text --></a></div><div class="class-browser__entry" data-reactid="62"><a href="RateConstraint.html#RateConstraint" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="63"><!-- react-text: 64 -->RateConstraint<!-- /react-text --></a></div><div class="class-browser__entry" data-reactid="65"><a href="StrictOrderConstraint.html#StrictOrderConstraint" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="66"><!-- react-text: 67 -->StrictOrderConstraint<!-- /react-text --></a></div><div class="class-browser__entry" data-reactid="68"><a href="TypeConstraint.html#TypeConstraint" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="69"><!-- react-text: 70 -->TypeConstraint<!-- /react-text --></a></div></div></nav></div></div></div><div class="ui-resizable-handle ui-resizable-e" data-reactid="71"></div></div></div><div class="two-column-layout__right" style="margin-left:340px;" data-reactid="72"><div data-reactid="73"><div class="doc-content" data-reactid="74"><div data-reactid="75"><div class="class-view" data-reactid="76"><div data-reactid="77"><h1 class="class-view__header anchorable-heading" data-reactid="78"><span class="anchorable-heading__text" data-reactid="79">ParametricRateConstraint</span><!-- react-text: 80 --> <!-- /react-text --><!-- react-text: 81 --> <!-- /react-text --><span class="class-view__header-type" data-reactid="82"><span data-reactid="83"><span data-reactid="84">Function</span></span></span></h1><div class="highlighted-text " data-reactid="85"><p>Like <a href="RateConstraint.html" title="Throttle a point from being produced more than once during a certain period." class="mega-link--internal">RateConstraint</a>, throttle a point from being produced more than
+once during a certain period but <strong>for any specific data set</strong>.</p>
+<p>If the events differ in data, each data set is tracked in a separate time
+buffer.</p>
+</div></div><div data-reactid="86"><div data-reactid="87"><div data-reactid="88"><h2 class="doc-group__header" data-reactid="89">Signature</h2><div class="doc-entity collapsible--expanded" data-reactid="90"><h3 class="doc-entity__header collapsible-header" title="ParametricRateConstraint" data-reactid="91"><span class="anchorable-heading__text" data-reactid="92"><span class="doc-entity__name-fragment" data-reactid="93">ParametricRateConstraint</span><span class="doc-entity__function-signature" data-reactid="94">(<em>config</em>: Object)</span><span class="doc-entity__method-params" data-reactid="95"><!-- react-text: 96 --> -&gt; <!-- /react-text --><span class="js-type-names" data-reactid="97"><a class="mega-link--internal" href="Constraint.html" title="The interface of a constraint and its available hooks.">Constraint</a></span></span></span></h3><div class="doc-entity__description" data-reactid="98"></div><div class="doc-entity__tags" data-reactid="99"><div class="tag-group tag-group--tabular collapsible" data-reactid="100"><h4 class="tag-group__header collapsible-header" data-reactid="101"><i class="icon collapser collapsible__icon icon-arrow-down" data-reactid="102"></i><!-- react-text: 103 -->Parameters (<!-- /react-text --><!-- react-text: 104 -->3<!-- /react-text --><!-- react-text: 105 -->)<!-- /react-text --></h4><table data-reactid="106"><tbody data-reactid="107"><tr class="param-tag" data-reactid="108"><td class="tag-group__primary-column" data-reactid="109"><header class="param-tag__header" data-reactid="110"><code class="param-tag__name" data-reactid="111">config</code></header></td><td data-reactid="112"><code class="param-tag__types" data-reactid="113"><span class="js-type-names" data-reactid="114">Object</span></code><!-- react-empty: 115 --></td></tr><tr class="param-tag" data-reactid="116"><td class="tag-group__primary-column" data-reactid="117"><header class="param-tag__header" data-reactid="118"><code class="param-tag__name" data-reactid="119">config.period</code></header></td><td data-reactid="120"><code class="param-tag__types" data-reactid="121"><span class="js-type-names" data-reactid="122"><a class="mega-link--internal" href="Period.html" title="Functions for representing and treating periods of time.">Period</a></span></code><!-- react-empty: 123 --></td></tr><tr class="param-tag" data-reactid="124"><td class="tag-group__primary-column" data-reactid="125"><header class="param-tag__header" data-reactid="126"><code class="param-tag__name" data-reactid="127">config.serializeFn</code></header></td><td data-reactid="128"><code class="param-tag__types" data-reactid="129"><span class="js-type-names" data-reactid="130">(Object) -> String</span></code><div class="highlighted-text param-tag__description" data-reactid="131"><p>Implement this if the event data can not be serialized as JSON.</p>
+</div><!-- react-empty: 132 --></td></tr></tbody></table></div><!-- react-empty: 133 --><!-- react-empty: 134 --><!-- react-empty: 135 --></div></div></div><div data-reactid="136"></div></div></div></div></div></div></div></div></div></div></div></div></div>
+
+    <!-- Prepare UMD container -->
+    <script>
+      window.exports = {};
+    </script>
+
+    <!-- Megadoc core scripts -->
+    
+    <script type="text/javascript" src="../assets/megadoc__config.js"></script>
+    
+    <script type="text/javascript" src="../assets/megadoc__vendor.js"></script>
+    
+    <script type="text/javascript" src="../assets/megadoc.js"></script>
+    
+
+    <!-- Re-export common modules into MEGADOC_PUBLIC_MODULES -->
+    <script type="text/javascript" src="../assets/megadoc__common.js"></script>
+    <script>
+      window.MEGADOC_PUBLIC_MODULES = exports['megadoc__common'];
+    </script>
+
+    <!-- Collect plugin script exports -->
+    
+    <script type="text/javascript" src="../assets/megadoc-plugin-markdown.js"></script>
+    
+    <script type="text/javascript" src="../assets/megadoc-plugin-js.js"></script>
+    
+    <script type="text/javascript" src="../assets/megadoc-theme-minimalist.js"></script>
+    
+
+    <!-- Load the plugins and start the client -->
+    <script>
+      window.startingDocumentUID = "cba6f826f52f49dad3239f22c3fce2d0";
+      window.startingDocumentHref = "/api/ParametricRateConstraint.html";
+      window.MEGADOC_PLUGINS = Object.keys(exports)
+        .filter(function(key) {
+          var thing = exports[key];
+
+          return (
+            thing &&
+            typeof thing === 'object' &&
+            typeof thing.name === 'string' &&
+            (
+              thing.plugin === true ||
+              /megadoc-(theme|plugin)-/.test(thing.name)
+            )
+          );
+        })
+        .map(function(key) {
+          return exports[key];
+        })
+      ;
+
+      exports['megadoc'].startApp(exports['megadoc__config'], {
+        startingDocumentUID: window.startingDocumentUID,
+        startingDocumentHref: window.startingDocumentHref,
+        plugins: window.MEGADOC_PLUGINS,
+      });
+    </script>
+  </body>
+</html>

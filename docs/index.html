@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Full Metal Alchemy is a high-level analytics library for refining raw application events into meaningful metrics. Its purpose is to help shape, aggregate, or buffer events to provide you with better insight from the events that are eventually submitted to your analytics provider." />
+
+    <title>Full Metal Alchemy
+</title>
+
+    
+    <link rel="stylesheet" href="assets/megadoc__styles.css" />
+    
+
+    
+  </head>
+
+  <body class="body--themed">
+    <div id="__app__"><div data-reactroot="" data-reactid="1" data-react-checksum="-641384440"><div data-reactid="2"></div><!-- react-empty: 3 --><div class="root root--with-multi-page-layout root--with-two-column-layout root--with-fixed-sidebar root--without-banner" data-reactid="4"><div class="root__screen" data-reactid="5"><div class="two-column-layout two-column-layout--fixed" data-reactid="6"><div class="two-column-layout__left" style="width:340px;" data-reactid="7"><div class="resizable-panel" data-reactid="8"><div class="resizable-panel__content" data-reactid="9"><div data-reactid="10"><div data-reactid="11"><nav class="megadoc-document-browser markdown-browser" data-reactid="12"><div data-reactid="13"><div data-reactid="14"><a href="#full-metal-alchemy" class="class-browser__entry-link active mega-link mega-link--active mega-link--functional" data-reactid="15"><!-- react-text: 16 -->Full Metal Alchemy
+<!-- /react-text --></a><div class="markdown-toc" data-reactid="17"><ul class="markdown-toc" data-reactid="18"><li class="markdown-toc__entry" data-reactid="19"><a href="#how-it-works" class="mega-link mega-link--functional" data-reactid="20">How it works</a></li><li class="markdown-toc__entry markdown-toc__entry--collapsible" data-reactid="21"><i class="icon icon-arrow-right" data-reactid="22"></i><a href="#concepts" class="mega-link mega-link--functional" data-reactid="23">Concepts</a><ul class="markdown-toc" data-reactid="24"><li class="markdown-toc__entry" data-reactid="25"><a href="#application-events" class="mega-link mega-link--functional" data-reactid="26">Application events</a></li><li class="markdown-toc__entry" data-reactid="27"><a href="#metrics-and-points" class="mega-link mega-link--functional" data-reactid="28">Metrics and points</a></li><li class="markdown-toc__entry" data-reactid="29"><a href="#constraints" class="mega-link mega-link--functional" data-reactid="30">Constraints</a></li><li class="markdown-toc__entry" data-reactid="31"><a href="#application-context" class="mega-link mega-link--functional" data-reactid="32">Application context</a></li><li class="markdown-toc__entry" data-reactid="33"><a href="#data-points" class="mega-link mega-link--functional" data-reactid="34">Data points</a></li></ul></li></ul><ul class="markdown-toc" data-reactid="35"><li class="markdown-toc__entry" data-reactid="36"><a href="#usage" class="mega-link mega-link--functional" data-reactid="37">Usage</a></li><li class="markdown-toc__entry" data-reactid="38"><a href="#where-to-go-from-here" class="mega-link mega-link--functional" data-reactid="39">Where to go from here</a></li><li class="markdown-toc__entry" data-reactid="40"><a href="#license" class="mega-link mega-link--functional" data-reactid="41">License</a></li></ul></div></div></div></nav></div><div data-reactid="42"><h3 class="layout__sidebar-header" data-reactid="43">API</h3></div><div data-reactid="44"><nav class="megadoc-document-browser class-browser__listing" data-reactid="45"><div class="class-browser__category" data-reactid="46"><div class="class-browser__entry" data-reactid="47"><a href="api/createState.html#createState" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="48"><!-- react-text: 49 -->createState<!-- /react-text --></a></div><div class="class-browser__entry" data-reactid="50"><a href="api/refine.html#refine" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="51"><!-- react-text: 52 -->refine<!-- /react-text --></a></div></div></nav></div><div data-reactid="53"><h3 class="layout__sidebar-header" data-reactid="54">API: Auxiliary</h3></div><div data-reactid="55"><nav class="megadoc-document-browser class-browser__listing" data-reactid="56"><div class="class-browser__category" data-reactid="57"><div class="class-browser__entry" data-reactid="58"><a href="api/DataPoint.html#DataPoint" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="59"><!-- react-text: 60 -->DataPoint<!-- /react-text --></a></div><div class="class-browser__entry" data-reactid="61"><a href="api/Period.html#Period" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="62"><!-- react-text: 63 -->Period<!-- /react-text --></a></div><div class="class-browser__entry" data-reactid="64"><a href="api/Tuple.html#Tuple" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="65"><!-- react-text: 66 -->Tuple<!-- /react-text --></a></div></div></nav></div><div data-reactid="67"><h3 class="layout__sidebar-header" data-reactid="68">API: Constraints</h3></div><div data-reactid="69"><nav class="megadoc-document-browser class-browser__listing" data-reactid="70"><div class="class-browser__category" data-reactid="71"><div class="class-browser__entry" data-reactid="72"><a href="api/Constraint.html#Constraint" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="73"><!-- react-text: 74 -->Constraint<!-- /react-text --></a></div><div class="class-browser__entry" data-reactid="75"><a href="api/FrequencyConstraint.html#FrequencyConstraint" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="76"><!-- react-text: 77 -->FrequencyConstraint<!-- /react-text --></a></div><div class="class-browser__entry" data-reactid="78"><a href="api/OrderConstraint.html#OrderConstraint" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="79"><!-- react-text: 80 -->OrderConstraint<!-- /react-text --></a></div><div class="class-browser__entry" data-reactid="81"><a href="api/ParametricRateConstraint.html#ParametricRateConstraint" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="82"><!-- react-text: 83 -->ParametricRateConstraint<!-- /react-text --></a></div><div class="class-browser__entry" data-reactid="84"><a href="api/ProximityConstraint.html#ProximityConstraint" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="85"><!-- react-text: 86 -->ProximityConstraint<!-- /react-text --></a></div><div class="class-browser__entry" data-reactid="87"><a href="api/RateConstraint.html#RateConstraint" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="88"><!-- react-text: 89 -->RateConstraint<!-- /react-text --></a></div><div class="class-browser__entry" data-reactid="90"><a href="api/StrictOrderConstraint.html#StrictOrderConstraint" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="91"><!-- react-text: 92 -->StrictOrderConstraint<!-- /react-text --></a></div><div class="class-browser__entry" data-reactid="93"><a href="api/TypeConstraint.html#TypeConstraint" class="class-browser__entry-link mega-link mega-link--functional" data-reactid="94"><!-- react-text: 95 -->TypeConstraint<!-- /react-text --></a></div></div></nav></div></div></div><div class="ui-resizable-handle ui-resizable-e" data-reactid="96"></div></div></div><div class="two-column-layout__right" style="margin-left:340px;" data-reactid="97"><div data-reactid="98"><div class="doc-content" data-reactid="99"><div data-reactid="100"><div data-reactid="101"><div class="highlighted-text " data-reactid="102">
+<h1 class="anchorable-heading">
+  <a name="full-metal-alchemy" class="anchorable-heading__anchor"></a>
+  <a href="#full-metal-alchemy" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">Full Metal Alchemy</span>
+</h1><p>Full Metal Alchemy is a high-level analytics library for refining raw
+application events into meaningful metrics. Its purpose is to help shape,
+aggregate, or buffer events to provide you with better insight from the events
+that are eventually submitted to your analytics provider.</p>
+<p>The library is agnostic to your analytics provider (e.g. Google Analytics or
+Mixpanel) since it operates at a layer between your application code and the
+one that submits events to that backend.</p>
+
+<h2 class="anchorable-heading">
+  <a name="how-it-works" class="anchorable-heading__anchor"></a>
+  <a href="#how-it-works" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">How it works</span>
+</h2><p>The heart of Full Metal Alchemy is in the <a href="api/refine.html" title="Produce metric points from a one or more application events and an optional context." class="mega-link--internal">refine</a> routine which takes as
+input a bunch of events triggered by your application, such as UI events, and
+runs them through a set of refinement rules called <a href="api/createState.html#~Metric" title="The definition of a metric and the points it should produce." class="mega-link--internal">metrics</a>. A
+metric can produce a <a href="api/refine.html#~MetricPoint" class="mega-link--internal">metric point</a> which is the refined
+version of the source event(s) and it is what you end up submitting to your
+backend.</p>
+<p>The next section goes over those concepts and later sections show how to
+utilize them, or you can choose to jump to the <a href="#usage" class="mega-link--internal">usage</a>
+section right away if you&#39;re feeling adventurous.</p>
+
+<h2 class="anchorable-heading">
+  <a name="concepts" class="anchorable-heading__anchor"></a>
+  <a href="#concepts" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">Concepts</span>
+</h2>
+<h3 class="anchorable-heading">
+  <a name="application-events" class="anchorable-heading__anchor"></a>
+  <a href="#application-events" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">Application events</span>
+</h3><p>An application event represents a micro-interaction with some function of your
+application. In itself such an event may not be useful to track, perhaps
+because it&#39;s too fine-grained and would end up cluttering your reports, or that
+it doesn&#39;t capture the whole picture of the interaction (e.g. it needs to be
+correlated with other events to do so.)</p>
+<p>Examples of such events can include:</p>
+<ul>
+<li>pressing a keybinding to trigger some UI function like a Search widget</li>
+<li>performing a sequence of interactions with a UI widget like a Filter control</li>
+<li>a page visit</li>
+<li>a call to an API with certain parameters</li>
+</ul>
+<p>If you&#39;re adding FMA to an existing analytics architecture, these events would
+be what you&#39;re already submitting to the backend. However, with FMA they are
+considered &quot;raw&quot; events that we want to further refine into useful metrics.</p>
+<p>Let&#39;s look at metrics now.</p>
+
+<h3 class="anchorable-heading">
+  <a name="metrics-and-points" class="anchorable-heading__anchor"></a>
+  <a href="#metrics-and-points" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">Metrics and points</span>
+</h3><p>A metric represents an interaction with your application <strong>that you want to
+track and analyze</strong>. It is defined as a set of rules to apply over one or more
+raw application events to produce <em>points</em>.</p>
+<p>Points are produced when certain application events are triggered and can
+contain data from application events (or the <a href="#application-context" class="mega-link--internal">context</a> as we&#39;ll see later) but more interestingly, their
+production can be <em>conditioned</em> using <em>constraints</em>.</p>
+<p>Constraints are the &quot;brains&quot; of metrics and they&#39;re probably the reason you&#39;d want to use the library, so let&#39;s learn about them.</p>
+
+<h3 class="anchorable-heading">
+  <a name="constraints" class="anchorable-heading__anchor"></a>
+  <a href="#constraints" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">Constraints</span>
+</h3><p>A constraint is a group of functions that are defined on a metric to answer the
+following questions:</p>
+<ol>
+<li>Is an application event, with its data, relevant to the metric?</li>
+<li>Can a point be produced?</li>
+</ol>
+<p>To answer those questions, a constraint maintains a state object and has the
+ability to adjust it every time an event is triggered. Thus, its answer can
+change from an event to another.</p>
+<p>Constraints can provide a wide variety of control. For example, we can
+condition a metric to produce a point at most once an hour, which would be
+ideal for granular events that are expected to be triggered rapidly during a
+session. In this case, we&#39;re only interested in the <em>visibility</em> of a function
+and not in how many times it&#39;s used.</p>
+<p>You can browse the available constraints in the navigation to the left. You can
+also create your own constraints as explained in its <a href="api/Constraint.html" title="The interface of a constraint and its available hooks." class="mega-link--internal">api documentation</a>.</p>
+
+<h3 class="anchorable-heading">
+  <a name="application-context" class="anchorable-heading__anchor"></a>
+  <a href="#application-context" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">Application context</span>
+</h3><p>For practicality purposes, FMA accepts an arbitrary dependency to expose to
+<a href="api/Constraint.html" title="The interface of a constraint and its available hooks." class="mega-link--internal">constraints</a> and to <a href="api/createState.html#~Metric.dataPoints" class="mega-link--internal">data point evaluators</a>. This dependency is referred to as the context
+and it can contain <strong>whatever data you may need to produce points</strong>.</p>
+<p>The context is particularly useful when modeling UI interactions; for example
+if you&#39;re on a page for a specific product and you want all the points produced
+while on that page to have the relevant <code>productId</code>, you aren&#39;t required to
+attach such a data point to <em>every</em> event you trigger. Instead, you would
+define it once on the context object (e.g. at the time of page visit) and then
+reference that context for the product id when you produce the point.</p>
+<p>Further, the context can be modified during <a href="api/refine.html" title="Produce metric points from a one or more application events and an optional context." class="mega-link--internal">refinement</a> by
+constraints you implement and is yielded back to you to re-inject in your
+application</p>
+
+<h3 class="anchorable-heading">
+  <a name="data-points" class="anchorable-heading__anchor"></a>
+  <a href="#data-points" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">Data points</span>
+</h3><p>A data point refers to a single piece of data you want to attach to a metric
+point when it&#39;s produced. Those points can be extracted from application events
+or the context, or just have a pre-defined static value.</p>
+
+<h2 class="anchorable-heading">
+  <a name="usage" class="anchorable-heading__anchor"></a>
+  <a href="#usage" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">Usage</span>
+</h2><p>For a start we need to define the metrics we want to track. The definition of a
+metric is described in detail <a href="api/createState.html#~Metric" title="The definition of a metric and the points it should produce." class="mega-link--internal">here</a> but for now we&#39;ll use a minimal
+definition:</p>
+<pre class="language-javascript"><code><span class="token keyword" >const</span> metrics <span class="token operator" >=</span> <span class="token punctuation" >[</span>
+  <span class="token punctuation" >{</span>
+    name<span class="token punctuation" >:</span> <span class="token string" >'User logged in'</span><span class="token punctuation" >,</span>
+    events<span class="token punctuation" >:</span> <span class="token punctuation" >[</span>
+      <span class="token string" >'logged-in'</span>
+    <span class="token punctuation" >]</span>
+  <span class="token punctuation" >}</span>
+<span class="token punctuation" >]</span></code></pre><p>Before we get to <a href="api/refine.html" title="Produce metric points from a one or more application events and an optional context." class="mega-link--internal">refine</a> we need to create an initial state for the metrics
+and their constraints using the the <a href="api/createState.html" title="Create a blank state for [[refinement | refine]]." class="mega-link--internal">createState</a> API.</p>
+<pre class="language-javascript"><code><span class="token keyword" >import</span> <span class="token punctuation" >{</span> createState <span class="token punctuation" >}</span> <span class="token keyword" >from</span> <span class="token string" >'full-metal-alchemy'</span>
+
+<span class="token keyword" >const</span> metrics <span class="token operator" >=</span> <span class="token punctuation" >.</span><span class="token punctuation" >.</span><span class="token punctuation" >.</span> <span class="token comment" spellcheck="true">// from before</span>
+
+<span class="token keyword" >let</span> metricState <span class="token operator" >=</span> <span class="token function" >createState</span><span class="token punctuation" >(</span>metrics<span class="token punctuation" >)</span></code></pre><p>Now we&#39;re ready to start producing points. We&#39;ll feed <a href="api/refine.html" title="Produce metric points from a one or more application events and an optional context." class="mega-link--internal">refine</a> with the
+metric state we&#39;ve prepared along with some application events:</p>
+<pre class="language-javascript"><code><span class="token keyword" >import</span> <span class="token punctuation" >{</span> refine <span class="token punctuation" >}</span> <span class="token keyword" >from</span> <span class="token string" >'full-metal-alchemy'</span>
+
+<span class="token keyword" >const</span> metricEvents <span class="token operator" >=</span> <span class="token punctuation" >.</span><span class="token punctuation" >.</span><span class="token punctuation" >.</span> <span class="token comment" spellcheck="true">// from before</span>
+<span class="token keyword" >let</span> metricState <span class="token operator" >=</span> <span class="token punctuation" >.</span><span class="token punctuation" >.</span><span class="token punctuation" >.</span>    <span class="token comment" spellcheck="true">// from before</span>
+
+<span class="token comment" spellcheck="true">// assume we got those from the application somehow:</span>
+<span class="token keyword" >const</span> events <span class="token operator" >=</span> <span class="token punctuation" >[</span>
+  <span class="token punctuation" >{</span> name<span class="token punctuation" >:</span> <span class="token string" >'logged-out'</span> <span class="token punctuation" >}</span><span class="token punctuation" >,</span>
+  <span class="token punctuation" >{</span> name<span class="token punctuation" >:</span> <span class="token string" >'logged-in'</span> <span class="token punctuation" >}</span>
+<span class="token punctuation" >]</span>
+
+<span class="token comment" spellcheck="true">// run them through and produce points eligible for submission:</span>
+<span class="token keyword" >const</span> nextMetricState <span class="token operator" >=</span> <span class="token function" >refine</span><span class="token punctuation" >(</span>metricState<span class="token punctuation" >,</span> events<span class="token punctuation" >)</span></code></pre><p>To see if any points were produced, you can inspect the <a href="api/createState.html#~MetricState.points" class="mega-link--internal">.points</a> property of the <a href="api/createState.html#~MetricState" title="The &quot;metric state&quot; is a transient structure to be used as input for [[refinement | refine]]. It contains a reference to the metrics to be used as well as the output of the process; the metric points and, optionally, the adjusted context." class="mega-link--internal">metric state</a>:</p>
+<pre class="language-javascript"><code><span class="token keyword" >const</span> pointsToSubmit <span class="token operator" >=</span> nextMetricState<span class="token punctuation" >.</span>points
+
+<span class="token comment" spellcheck="true">// perhaps you'd submit them immediately:</span>
+pointsToSubmit<span class="token punctuation" >.</span><span class="token function" >forEach</span><span class="token punctuation" >(</span>point <span class="token operator" >=</span><span class="token operator" >></span> <span class="token punctuation" >{</span>
+  analyticsAdapter<span class="token punctuation" >.</span><span class="token function" >submit</span><span class="token punctuation" >(</span><span class="token punctuation" >{</span>
+    name<span class="token punctuation" >:</span> point<span class="token punctuation" >.</span>name
+    data<span class="token punctuation" >:</span> point<span class="token punctuation" >.</span>data
+  <span class="token punctuation" >}</span><span class="token punctuation" >)</span>
+<span class="token punctuation" >}</span><span class="token punctuation" >)</span></code></pre><p>Finally, be sure to grab a reference to the advanced state before the next call
+to refine:</p>
+<pre class="language-javascript"><code>metricState <span class="token operator" >=</span> nextMetricState</code></pre><p>That should be the primary flow. Keep in mind that the APIs are immutable; they
+won&#39;t have side-effects on any of the input parameters. For this reason it is
+necessary to keep a reference to the &quot;next&quot; state and feed it as input to the
+next call.</p>
+
+<h2 class="anchorable-heading">
+  <a name="where-to-go-from-here" class="anchorable-heading__anchor"></a>
+  <a href="#where-to-go-from-here" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">Where to go from here</span>
+</h2><p>Look into the <a href="api/createState.html#~Metric" title="The definition of a metric and the points it should produce." class="mega-link--internal">metric definition</a> in more detail then perhaps go
+over the available constraints which you can find in the sidebar.</p>
+<p>If you&#39;re looking to write your own constraints, consult the <a href="api/Constraint.html" title="The interface of a constraint and its available hooks." class="mega-link--internal">Constraint</a>
+documentation.</p>
+
+<h2 class="anchorable-heading">
+  <a name="license" class="anchorable-heading__anchor"></a>
+  <a href="#license" class="anchorable-heading__link icon icon-link"></a><span class="anchorable-heading__text">License</span>
+</h2><p>Copyright 2018 Ahmad Amireh <a href="&#x6d;&#97;&#x69;&#108;&#116;&#x6f;&#x3a;&#x61;&#x68;&#109;&#97;&#x64;&#64;&#x61;&#109;&#105;&#x72;&#x65;&#104;&#46;&#110;&#101;&#x74;" target="_blank">&#x61;&#x68;&#109;&#97;&#x64;&#64;&#x61;&#109;&#105;&#x72;&#x65;&#104;&#46;&#110;&#101;&#x74;</a>.</p>
+<p>This library is licensed under the MIT license.</p>
+</div></div></div></div></div></div></div></div></div></div></div>
+
+    <!-- Prepare UMD container -->
+    <script>
+      window.exports = {};
+    </script>
+
+    <!-- Megadoc core scripts -->
+    
+    <script type="text/javascript" src="assets/megadoc__config.js"></script>
+    
+    <script type="text/javascript" src="assets/megadoc__vendor.js"></script>
+    
+    <script type="text/javascript" src="assets/megadoc.js"></script>
+    
+
+    <!-- Re-export common modules into MEGADOC_PUBLIC_MODULES -->
+    <script type="text/javascript" src="assets/megadoc__common.js"></script>
+    <script>
+      window.MEGADOC_PUBLIC_MODULES = exports['megadoc__common'];
+    </script>
+
+    <!-- Collect plugin script exports -->
+    
+    <script type="text/javascript" src="assets/megadoc-plugin-markdown.js"></script>
+    
+    <script type="text/javascript" src="assets/megadoc-plugin-js.js"></script>
+    
+    <script type="text/javascript" src="assets/megadoc-theme-minimalist.js"></script>
+    
+
+    <!-- Load the plugins and start the client -->
+    <script>
+      window.startingDocumentUID = "2d966dc411c413a357e52bb0843e96ac";
+      window.startingDocumentHref = "/index.html";
+      window.MEGADOC_PLUGINS = Object.keys(exports)
+        .filter(function(key) {
+          var thing = exports[key];
+
+          return (
+            thing &&
+            typeof thing === 'object' &&
+            typeof thing.name === 'string' &&
+            (
+              thing.plugin === true ||
+              /megadoc-(theme|plugin)-/.test(thing.name)
+            )
+          );
+        })
+        .map(function(key) {
+          return exports[key];
+        })
+      ;
+
+      exports['megadoc'].startApp(exports['megadoc__config'], {
+        startingDocumentUID: window.startingDocumentUID,
+        startingDocumentHref: window.startingDocumentHref,
+        plugins: window.MEGADOC_PLUGINS,
+      });
+    </script>
+  </body>
+</html>

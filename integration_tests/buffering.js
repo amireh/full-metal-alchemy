@@ -1,4 +1,4 @@
-const { C, Period } = require('../')
+const { RateConstraint, TypeConstraint, Period } = require('../')
 
 module.exports = t => [
   {
@@ -7,13 +7,13 @@ module.exports = t => [
       {
         name: 'Products: Keyboard Navigation',
         constraints: [
-          C.TypeConstraint([
+          TypeConstraint([
             'products/product-selected-using-keyboard',
             'products/product-expanded-using-keyboard',
             'products/sub-product-selected-using-keyboard'
           ]),
 
-          C.RateConstraint({ period: Period.days(1) })
+          RateConstraint({ period: Period.days(1) })
         ],
       },
     ],

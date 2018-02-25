@@ -1,0 +1,80 @@
+@import (reference) "~helpers";
+
+ul, ol {
+  padding-left: 1.3rem;
+}
+
+.schemable({
+  font-family: monospace;
+
+  .api-article         pre[class*="language-"],
+  .example-source-file pre[class*="language-"],
+  .example-article     pre[class*="language-"] {
+    padding: 0;
+    overflow: visible;
+  }
+
+  .root--with-multi-page-layout .banner-wrapper {
+    background: white;
+
+    .banner {
+      width: auto;
+    }
+  }
+
+  .property-tag__description,
+  .property-tag__default-value,
+  .doc-entity__description,
+  .doc-entity__tags {
+    margin-left: 0;
+  }
+
+  .doc-entity + .doc-entity {
+    margin-top: 2rem;
+    border-top: 1px dashed @border-color;
+    padding-top: 1rem;
+  }
+
+  .tag-group__header {
+    list-style: none;
+    letter-spacing: inherit;
+  }
+
+  img[src*="career-router.svg"] {
+    margin-bottom: 1rem;
+  }
+
+  .layout__sidebar-header {
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .class-view__type-def-list {
+    padding-left: 0;
+  }
+
+  .class-view__type-def-list .doc-entity__header,
+  .class-view__type-def-list .doc-entity__description {
+    margin-left: 0;
+  }
+
+  .doc-entity__method-params,
+  .doc-entity__function-signature {
+    font-family: inherit;
+  }
+
+  .doc-group__header {
+    border-bottom-style: dashed;
+    border-bottom-width: 0.1rem;
+    padding-bottom: 0.5rem;
+  }
+
+  a.anchorable-heading__link {
+    width: 3rem;
+    margin-left: -3.25rem;
+    position: absolute;
+    text-align: right;
+    padding-right: 0;
+    line-height: 1;
+  }
+});

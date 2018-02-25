@@ -1,3 +1,5 @@
+const { DataPoint } = require('../')
+
 module.exports = t => [
   {
     name: 'it extract data point literals',
@@ -5,12 +7,18 @@ module.exports = t => [
       {
         name: 'Login',
         events: [ 'login' ],
-        dataPoints: [ 'userId' ],
+        dataPoints: [
+          'userId',
+          {
+            name: 'accountId',
+            value: DataPoint.reflectFromContext('accountId')
+          }
+        ],
       }
     ],
 
     steps: [
-      t.reduce({ name: 'login', data: { userId: 'u1' } }),
+      t.reduce({ name: 'login', data: { userId: 'u1' } }, { accountId: 'a1' }),
 
       t.advance(),
 
@@ -20,7 +28,8 @@ module.exports = t => [
             index: 0,
             name: 'Login',
             data: {
-              userId: 'u1'
+              accountId: 'a1',
+              userId: 'u1',
             }
           }
         ]

@@ -1,4 +1,4 @@
-const { C } = require('../')
+const { OrderConstraint } = require('../')
 
 module.exports = t => [
   {
@@ -7,7 +7,7 @@ module.exports = t => [
       {
         name: 'Products: Got Sidetracked',
         constraints: [
-          C.OrderConstraint([
+          OrderConstraint([
             'products/clicked-product-link',
             'page-views/product-detail',
             'page-views/products',

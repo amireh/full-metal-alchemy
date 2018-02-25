@@ -1,4 +1,4 @@
-const { C, Period } = require('../')
+const { ParametricRateConstraint, Period, TypeConstraint } = require('../')
 
 module.exports = t => [
   {
@@ -8,8 +8,8 @@ module.exports = t => [
         name: 'Products: Keyboard Navigation',
         dataPoints: [ 'a' ],
         constraints: [
-          C.ParametricRateConstraint({ period: Period.hours(6) }),
-          C.TypeConstraint([
+          ParametricRateConstraint({ period: Period.hours(6) }),
+          TypeConstraint([
             'products/product-selected-using-keyboard',
           ]),
         ],
