@@ -1,7 +1,7 @@
 {
   "name": "full-metal-alchemy",
   "description": "A high-level analytics library.",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "main": "lib/index.js",
   "license": "MIT",
   "scripts": {
